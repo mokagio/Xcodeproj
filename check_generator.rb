@@ -18,22 +18,12 @@ CFFileDescriptor
 CFLocale
 CFMachPort
 CFMessagePort
-CFMutableArray
-CFMutableAttributedString
-CFMutableBag
-CFMutableBitVector
-CFMutableCharacterSet
-CFMutableData
-CFMutableDictionary
-CFMutableSet
-CFMutableString
 CFNotificationCenter
 CFNull
 CFNumber
 CFNumberFormatter
 CFPlugIn
 CFPlugInInstance
-CFPropertyList
 CFReadStream
 CFRunLoop
 CFRunLoopObserver
@@ -45,14 +35,10 @@ CFString
 CFStringTokenizer
 CFTimeZone
 CFTree
-CFType
 CFURL
 CFUserNotification
 CFUUID
 CFWriteStream
-CFXMLNode
-CFXMLParser
-CFXMLTree
 LIST
 
 types_names = []
