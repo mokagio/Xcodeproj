@@ -58,3 +58,7 @@ end
 check_string += "}"
 
 puts check_string
+
+IO.popen('pbcopy', 'w').puts check_string
+
+puts "\nAlready copied on your clipboard ;)"
