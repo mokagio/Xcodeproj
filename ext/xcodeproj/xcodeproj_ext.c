@@ -106,13 +106,97 @@ hash_set(const void *keyRef, const void *valueRef, void *hash) {
         CFStringRef descriptionRef = CFCopyDescription(elementRef);
         // obviously not optimal, but we're raising here, so it doesn't really matter
         VALUE description = cfstr_to_str(descriptionRef);
-        rb_raise(rb_eTypeError, "Plist array value contains a object type unsupported by Xcodeproj. In: `%s'", RSTRING_PTR(description));
+        rb_raise(rb_eTypeError, "Plist array value contains a object type unsupported by Xcodeproj. Value is: `%s'", RSTRING_PTR(description));
         CFRelease(descriptionRef);
       }
     }
 
   } else {
-    rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj.");
+  // rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type identifier is %lu", valueType);
+    if (valueType == CFAllocatorGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFAllocator, (identifer %lu)", valueType);
+    } else if (valueType == CFArrayGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFArray, (identifer %lu)", valueType);
+    } else if (valueType == CFAttributedStringGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFAttributedString, (identifer %lu)", valueType);
+    } else if (valueType == CFBagGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFBag, (identifer %lu)", valueType);
+    } else if (valueType == CFBinaryHeapGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFBinaryHeap, (identifer %lu)", valueType);
+    } else if (valueType == CFBitVectorGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFBitVector, (identifer %lu)", valueType);
+    } else if (valueType == CFBooleanGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFBoolean, (identifer %lu)", valueType);
+    } else if (valueType == CFBundleGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFBundle, (identifer %lu)", valueType);
+    } else if (valueType == CFCalendarGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFCalendar, (identifer %lu)", valueType);
+    } else if (valueType == CFCharacterSetGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFCharacterSet, (identifer %lu)", valueType);
+    } else if (valueType == CFDataGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFData, (identifer %lu)", valueType);
+    } else if (valueType == CFDateGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFDate, (identifer %lu)", valueType);
+    } else if (valueType == CFDateFormatterGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFDateFormatter, (identifer %lu)", valueType);
+    } else if (valueType == CFDictionaryGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFDictionary, (identifer %lu)", valueType);
+    } else if (valueType == CFErrorGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFError, (identifer %lu)", valueType);
+    } else if (valueType == CFFileDescriptorGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFFileDescriptor, (identifer %lu)", valueType);
+    } else if (valueType == CFLocaleGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFLocale, (identifer %lu)", valueType);
+    } else if (valueType == CFMachPortGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFMachPort, (identifer %lu)", valueType);
+    } else if (valueType == CFMessagePortGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFMessagePort, (identifer %lu)", valueType);
+    } else if (valueType == CFNotificationCenterGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFNotificationCenter, (identifer %lu)", valueType);
+    } else if (valueType == CFNullGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFNull, (identifer %lu)", valueType);
+    } else if (valueType == CFNumberGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFNumber, (identifer %lu)", valueType);
+    } else if (valueType == CFNumberFormatterGetTypeID()) {
+      CFNumberRef number = valueRef;
+      CFNumberType numberType = CFNumberGetType(number)
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFNumberFormatter, (identifer %lu)", valueType);
+    } else if (valueType == CFPlugInGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFPlugIn, (identifer %lu)", valueType);
+    } else if (valueType == CFPlugInInstanceGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFPlugInInstance, (identifer %lu)", valueType);
+    } else if (valueType == CFReadStreamGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFReadStream, (identifer %lu)", valueType);
+    } else if (valueType == CFRunLoopGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFRunLoop, (identifer %lu)", valueType);
+    } else if (valueType == CFRunLoopObserverGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFRunLoopObserver, (identifer %lu)", valueType);
+    } else if (valueType == CFRunLoopSourceGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFRunLoopSource, (identifer %lu)", valueType);
+    } else if (valueType == CFRunLoopTimerGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFRunLoopTimer, (identifer %lu)", valueType);
+    } else if (valueType == CFSetGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFSet, (identifer %lu)", valueType);
+    } else if (valueType == CFSocketGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFSocket, (identifer %lu)", valueType);
+    } else if (valueType == CFStringGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFString, (identifer %lu)", valueType);
+    } else if (valueType == CFStringTokenizerGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFStringTokenizer, (identifer %lu)", valueType);
+    } else if (valueType == CFTimeZoneGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFTimeZone, (identifer %lu)", valueType);
+    } else if (valueType == CFTreeGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFTree, (identifer %lu)", valueType);
+    } else if (valueType == CFURLGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFURL, (identifer %lu)", valueType);
+    } else if (valueType == CFUserNotificationGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFUserNotification, (identifer %lu)", valueType);
+    } else if (valueType == CFUUIDGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFUUID, (identifer %lu)", valueType);
+    } else if (valueType == CFWriteStreamGetTypeID()) {
+      rb_raise(rb_eTypeError, "Plist contains a hash value object type unsupported by Xcodeproj. The type is CFWriteStream, (identifer %lu)", valueType);
+    }
+
   }
 
   rb_hash_aset((VALUE)hash, key, value);
